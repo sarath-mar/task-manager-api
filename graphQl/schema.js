@@ -1,35 +1,36 @@
 const { gql } = require("apollo-server")
+
 const homeSchema = require("../modules/contents/home/schema")
-const schemas=new Array()
+const textSchema = require("../modules/contents/text/schema")
+
+
+// ................
+const schemas = new Array()
 schemas.push(homeSchema)
-const query=new Array()
-const type=new Array()
-const mutation=new Array()
-// for(let schema of schemas){
-//     if(schema.Query){
-//         query.pu
-//     }
-// }
+schemas.push(textSchema)
+
+// ------------------
+const query = new Array()
+const type = new Array()
+const mutation = new Array()
+for (let schema of schemas) {
+    if (schema.Query) {
+        query.push(schema.Query)
+    }
+    if (schema.Mutation) {
+        mutation.push(schema.Mutation)
+    }
+    if (schema.type) {
+        type.push(schema.type)
+    }
+}
 const typeDefs = gql`
 type Query{
-  ${homeSchema.Query}
+  ${query}
 }
-type ${homeSchema.type}
+type ${type}
 type Mutation{
-    ${homeSchema.Mutation}
+    ${mutation}
 }
 `
 module.exports = typeDefs
-
-// const typeDefs = gql`
-// type Query{
-//   ${homeSchema.Query}
-// }
-// type result{
-//     sum:Int
-//     comment:String
-// }
-// type Mutation{
-//     addTwoNumber(a:Int b:Int):result
-// }
-// `

@@ -1,22 +1,30 @@
 const homeResolver = require("../modules/contents/home/resolver")
-const homeSchema = require("../modules/contents/home/schema")
-const query=new Array()
-const mutation=new Array()
-const type=new Array()
-query.push(...homeSchema.Query)
-const allQyery=query.join("/n")
+const textResolver = require("../modules/contents/text/resolver")
+
+// ----------------
+let allResolvers = new Array
+
+allResolvers.push(homeResolver)
+
+// ------------------
+let query = new Array()
+let mutation = new Array()
+for (let resolver of allResolvers) {
+    if (resolver.Query) {
+        query.push({ ...resolver.Query })
+    }
+    if (resolver.Mutation) {
+        mutation.push({ ...resolver.Mutation })
+    }
+
+}
 const resolvers = {
     Query: {
-        name: (parent, arg, context, info) => {
-console.log(query)
-console.log(allQyery)
-            return "sarath"
-        },
-        // ...homeResolver.Query,
-
-    },
+        ...query[0]
+    }
+    ,
     Mutation: {
-        ...homeResolver.Mutation
+        ...mutation[0]
     }
 }
 module.exports = resolvers
