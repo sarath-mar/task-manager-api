@@ -1,16 +1,16 @@
 module.exports = {
     Query: {
-        name: (parent, arg, context, info) => {
+        getAllTeamMember: (parent, arg, context, info) => {
 
             return "sarath"
         },
-        age: (parent, arg, context, info) => {
+        getATeamMember: (parent, arg, context, info) => {
 
-            return arg.name
-        }
+            return "sarath"
+        },
     },
     Mutation: {
-        addTwoNumber: (parent, arg, context, info) => {
+        addTeamMember: (parent, arg, context, info) => {
             let sum = arg.a + arg.b
             let comment = "helloo addded"
             return {

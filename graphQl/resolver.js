@@ -1,10 +1,9 @@
-const homeResolver = require("../modules/contents/home/resolver")
-const textResolver = require("../modules/contents/text/resolver")
+const teamMemberResolver = require("../modules/contents/team_member/team_member_resolver")
 
 // ----------------
 let allResolvers = new Array
 
-allResolvers.push(homeResolver)
+allResolvers.push(teamMemberResolver)
 
 // ------------------
 let query = new Array()
